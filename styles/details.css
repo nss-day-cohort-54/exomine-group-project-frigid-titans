@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.purchaser__selection {
+    display: flex;
+    flex-direction: row;
+    flex: 3;
+}
+
+.provider__selection {
+    flex: 1;
+}
+
+.mineral__selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex: 3;
+}
+
