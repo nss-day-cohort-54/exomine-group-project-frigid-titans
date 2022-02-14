@@ -9,7 +9,8 @@ import {Colonies} from "./colonies.js"
     // if inactive, do not display
 export const Governors = () => {
     const governors = getGovernors();
-        let html = '<option value="0">Select governor</option>'
+        let html = '<select id="governors">'
+        html += '<option value="0">Select governor</option>'
     
         for (const governor of governors) {
             html += `<option value="${governor.id}">${governor.name}</option>`
