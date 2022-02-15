@@ -11,7 +11,7 @@ export const Exomine = () => {
             ${Governors()}
         </section>
         <section class="colony">
-            
+            <h2> Colony Minerals </h2>
         </section>
     </article>
     <article class="provider__selection">

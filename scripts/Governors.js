@@ -32,16 +32,10 @@ document.addEventListener(
         // // if governor.colonyId === colony ID, display
         if (event.target.id === "governors") {
             setGovernor(parseInt(event.target.value))
-            for (const governor of governors) {
-                //when governor is selected, 
-                // the associated colony's name and resources will appear 
-                for (const colony of colonies) {
-                    if (governor.colonyId === colony.id) {
-                        const colonyContainer = document.querySelector(".colony")
-                        colonyContainer.innerHTML = Colonies(governor)
-                    }
-                }
-            }
+
+            const governor = event.target.value
+            const colonyContainer = document.querySelector(".colony")
+            colonyContainer.innerHTML = Colonies(governor)
         }
     }
 )

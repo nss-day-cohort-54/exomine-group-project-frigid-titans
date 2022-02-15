@@ -6,9 +6,10 @@ const governors = getGovernors();
 const minerals = getColonyMinerals();
 
 // Html string that displays the amount of colony resources
-export const Colonies = (governor) => {
+export const Colonies = (governorId) => {
+    let governor= governors.find(gov => gov.id=== parseInt(governorId))
     for (const colony of colonies) {
-    if (governor.colonyId === colony.id){
+    if (governor?.colonyId === colony.id){
         let html = `<h2> ${colony.name} Minerals </h2>`
         html += `<ul>`
         // if amount is 0, dont display.
@@ -19,12 +20,12 @@ export const Colonies = (governor) => {
         }
         html += `</ul>`
 
+        
         return html
-
-    }else{
-        let html =`<h2> Colony Minerals </h2>`
-        return html
+        
+    } else if (governor === undefined) {
+        return `<h2> Colony Minerals </h2>`
     }
-    }
+}
 
 }
