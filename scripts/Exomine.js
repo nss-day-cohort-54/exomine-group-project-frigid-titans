@@ -23,7 +23,7 @@ export const Exomine = () => {
     </article>
     <article class="mineral__selection">
         <section class="minerals">
-            mineral function goes here
+            <h2>FacilityMinerals</h2>
         </section>
         <section class="spaceCart">
         <h3>Space Cart</h3>
