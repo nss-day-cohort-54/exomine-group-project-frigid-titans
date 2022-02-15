@@ -21,25 +21,6 @@ export const filteredFacilityMinerals = (facility) => {
     return facilityMineralArray
 }
 
-// const filteredMinerals = filteredFacilityMinerals()
-
-// define a function that returns the specific nimeral name for the facilitymineral.mineralId property
-// export const getMineralNames = (filteredFacilitiesArray) => {
-//     let mineralNames = ""
-
-//     for (const facilityMineral of filteredFacilitiesArray) {
-//         for (const mineral of minerals) {
-//             if (facilityMineral.mineralId === mineral.id) {
-//                 mineralNames += mineral.name
-//                 mineralNames += ""
-//             }
-            
-//         }
-        
-//     }
-
-// }
-
 // Returns an HTML list String via string interpolation
 export const Minerals = (selectedFacility) => {
     let html = "<ul>"
@@ -47,6 +28,7 @@ export const Minerals = (selectedFacility) => {
     const filteredMineralArray = filteredFacilityMinerals(selectedFacility)
     
     filteredMineralArray.forEach((filteredMineral) => {
+
         for (const mineral of minerals) {
             if (filteredMineral.mineralId === mineral.id) {
                 html += 
@@ -62,26 +44,15 @@ return html
 
 }
 
-// filteredMineralArray.forEach((filteredMineral) => {
-//     for (const mineral of mineral) {
-//         if (filteredMineral.mineralId === mineral.id) {
-//             html += 
-//         `<li> 
-//         <input type="radio" name="mineral" value="${mineral.id}" /> 
-//         ${filteredMineral.mineralAmount} tons of ${mineral.name}
-//         </li>`
-//         }
-        
-//     }
-// })
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.name === "mineral") {
+            setMineral(parseInt(event.target.value))
+        }
+    }
+)
 
-    
-    
-    
-    
-    
-    
-//     return `<ul>   
 //         ${
 //             // iterates(?) through Mineral array
 //             filteredMinerals.map(
