@@ -1,6 +1,7 @@
 @import "./details.css";
 
 *{
-    border: 1px dashed black;
-  
+    border: 1px dotted black;
+    padding: 10px;
+    margin: 10px;
 }

@@ -3,7 +3,7 @@
 // Define and export a function that 
 // iterates through the list of governors
 // and returns an HTML string for a drop down selection menu
-    // condtional that determines if governor is active
+    // conditional that determines if governor is active
     // if inactive, do not display
 
 //when governor is selected, 
