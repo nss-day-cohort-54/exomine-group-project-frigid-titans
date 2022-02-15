@@ -12,9 +12,9 @@ export const Colonies = (governorId) => {
     if (governor?.colonyId === colony.id){
         let html = `<h2> ${colony.name} Minerals </h2>`
         html += `<ul>`
-        // if amount is 0, dont display.
-        if( colony.id === minerals.colonyId && minerals.mineralAmount > 0){
-            for (const mineral of minerals) {
+        for (const mineral of minerals) {
+            // if amount is 0, dont display.
+                if( colony.id === mineral.colonyId && mineral.mineralAmount > 0){
                 `<li>${mineral.mineralAmount} ${mineral.name} <li>`
             }
         }
