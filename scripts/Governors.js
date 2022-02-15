@@ -12,6 +12,8 @@ import { Colonies } from "./Colonies.js";
 export const Governors = () => {
     let html = '<select id="governors">'
     html += '<option value="0">Select governor</option>'
+    // conditional that determines if governor is active
+    // if inactive, do not display
 
     for (const governor of governors) {
         if (governor.active === true) {
