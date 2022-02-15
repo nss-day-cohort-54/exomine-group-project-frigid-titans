@@ -43,9 +43,7 @@ document.addEventListener(
                     innerHTML += `<h2>Facility Minerals of ${facility.name}</h2><br>
                                 ${Minerals(facility)}`
                     // return mineralContainer.innerHTML = mineralHTML
-                } else  {
-                    innerHTML += `<h2>FacilityMinerals</h2>`}
-
+                } 
             }
             mineralContainer.innerHTML = innerHTML
         }
