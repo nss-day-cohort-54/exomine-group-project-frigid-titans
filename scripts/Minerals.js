@@ -48,7 +48,23 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "mineral") {
+            
+            const spaceCartContainer = document.querySelector(".spaceCartHTML")
+            
             setMineral(parseInt(event.target.value))
+            
+            const minerals = getMinerals()
+            let innerHTML = ""
+            // iterate through list of minerals
+            for (const mineral of minerals) {
+                // to find if the value of the change event target is equal to a mineralId
+                if (parseInt(event.target.value) === mineral.id) {
+                //    if equal, return html with mineral radio button inputs
+                    innerHTML += `1 ton of ${mineral.name} from `
+                    // return mineralContainer.innerHTML = mineralHTML
+                } 
+            }
+            spaceCartContainer.innerHTML = innerHTML
         }
     }
 )
