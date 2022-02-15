@@ -1,3 +1,5 @@
+import { Governors } from "./Governors.js"
+import { Colonies } from "./Colonies.js"
 // Define and export a function that contains the entire HTML
 
 export const Exomine = () => {
@@ -6,10 +8,10 @@ export const Exomine = () => {
     <article class="purchaser__selection">
         <section class="governors">
         <label class="label" for="governorSelection">Choose A Governor</label>
-            governor function go here
+            ${Governors()}
         </section>
         <section class="colony">
-            colony function go here
+            
         </section>
     </article>
     <article class="provider__selection">
