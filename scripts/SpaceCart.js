@@ -20,7 +20,8 @@ export const SpaceCart = (foundObject, mineralId) => {
             innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}`
             // return mineralContainer.innerHTML = mineralHTML
         }
-    } return innerHTML
+    } 
+    return innerHTML
 }
 
 export const MineralMath = () => {

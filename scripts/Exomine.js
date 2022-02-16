@@ -27,7 +27,8 @@ export const Exomine = () => {
         </section>
         <section class="spaceCart">
         <h3>Space Cart</h3>
-            space cart function goes here
+        <div class="spaceCartHTML"></div>
+         
         <button id="purchase">Purchase Mineral</button>
         </section>
     </article>
