@@ -1,4 +1,6 @@
-import { getColonyMinerals, getFacilityMinerals, findTransientState, getFacilities, getMinerals } from "./database.js";
+import { getColonies, getColonyMinerals, getFacilityMinerals, findTransientState, getFacilities, getMinerals, getGovernors, purchaseMineral } from "./database.js";
+import { Colonies } from "./Colonies.js";
+import { Minerals } from "./Minerals.js";
 
 export const SpaceCart = (foundObject, mineralId) => {
 
@@ -21,6 +23,41 @@ export const SpaceCart = (foundObject, mineralId) => {
     } return innerHTML
 }
 
+export const MineralMath = () => {
+    
+    const facilityMinerals = getFacilityMinerals()
+
+    const governors = getGovernors()
+
+    const colonyMinerals = getColonyMinerals()
+
+    const foundObject = findTransientState()
+
+    facilityMinerals.find((facilityMineral) => {
+        if (foundObject.selectedFacility === facilityMineral.facilityId &&
+            foundObject.selectedMineral === facilityMineral.mineralId) {
+                return facilityMineral.mineralAmount--
+            }
+    })
+
+    const foundGov = governors.find((gov) => {
+        return foundObject.selectedGovernor === gov.id
+    })
+
+    colonyMinerals.find((colonyMineral) => {
+        if (foundObject.selectedMineral === colonyMineral.mineralId &&
+            foundGov.colonyId === colonyMineral.colonyId) {
+                return colonyMineral.mineralAmount++
+            }
+    })
+    
+    // const colonyContainer = document.querySelector(".colony")
+    //         colonyContainer.innerHTML = Colonies(foundGov)
+
+    // purchaseMineral()
+
+
+}
 
 // DEfine and Export a function
 
@@ -29,6 +66,7 @@ export const SpaceCart = (foundObject, mineralId) => {
 
 // Define function that adds minerals to colonies and subtracts from facilities
 // mineralMath()
+// return facilityMineral.amount and colonyMineral.amount
 
 // 
 

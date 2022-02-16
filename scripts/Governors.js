@@ -38,6 +38,7 @@ document.addEventListener(
             const governor = event.target.value
             const colonyContainer = document.querySelector(".colony")
             colonyContainer.innerHTML = Colonies(governor)
+            
         }
     }
 )
