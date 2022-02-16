@@ -23,12 +23,11 @@ export const Exomine = () => {
     </article>
     <article class="mineral__selection">
         <section class="minerals">
-            <h2>FacilityMinerals</h2>
+            <h2>Facility Minerals</h2>
         </section>
         <section class="spaceCart">
         <h3>Space Cart</h3>
-            <div class="spaceCartHTML">
-            </div>
+            space cart function goes here
         <button id="purchase">Purchase Mineral</button>
         </section>
     </article>
