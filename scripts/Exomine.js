@@ -1,5 +1,5 @@
 import { Governors } from "./Governors.js"
-import { Colonies } from "./Colonies.js"
+import { MineralMath } from "./SpaceCart.js"
 import { Facilities } from "./Facilities.js"
 // Define and export a function that contains the entire HTML
 
@@ -27,14 +27,31 @@ export const Exomine = () => {
         </section>
         <section class="spaceCart">
         <h3>Space Cart</h3>
-            space cart function goes here
+        <div class="spaceCartHTML"></div>
+         
         <button id="purchase">Purchase Mineral</button>
         </section>
     </article>
     `
 }
+
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        // set a variable equal to click target
+        const buttonClicked = clickEvent.target
+        // if this thing happens
+        if (buttonClicked.id === "purchase") {
+            // then call this function
+            MineralMath()
+        }
+    }
+)
+
+
+
 // for the body of the website
-    //contains the component functions for 
-        //Governor drop down selection (Governors()) 
+    //contains the component functions for
+        //Governor drop down selection (Governors())
         // drop down for facilities selection (Facilities())
         // Mineral purchase Function and button (Orders())

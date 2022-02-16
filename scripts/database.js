@@ -369,9 +369,10 @@ export const findTransientState = () => {
 }
 
 export const purchaseMineral = () => {
+    
+    database.transientState = {}
 
-        // Broadcast custom event to entire document so that the
-        // application can re-render and update state
-        document.dispatchEvent( new CustomEvent("stateChanged") )
-    }
+    document.dispatchEvent( new CustomEvent("stateChanged"))
+    
+}
 

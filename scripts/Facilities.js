@@ -43,6 +43,7 @@ document.addEventListener(
                     innerHTML += `<h2>Facility Minerals of ${facility.name}</h2><br>
                                 ${Minerals(facility)}`
                     // return mineralContainer.innerHTML = mineralHTML
+                    
                 } 
             }
             mineralContainer.innerHTML = innerHTML
