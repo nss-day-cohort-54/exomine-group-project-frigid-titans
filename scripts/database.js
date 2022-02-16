@@ -368,13 +368,6 @@ export const findTransientState = () => {
    
 }
 
-// const foundMineral = database.find(
-
-//     (t) => {
-//         return t.selectedMineral === mineralId
-//     }
-// )
-
 export const purchaseMineral = () => {
 
         // Broadcast custom event to entire document so that the

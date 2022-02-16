@@ -1,8 +1,9 @@
 // import getMinerals and setMinerals
 // HTML string to display available minerals in a facility as radio buttons
 // event listener change or click for radio button selection
-    // once selected, the selected would be displayed in SpaceCart (click)
+// once selected, the selected would be displayed in SpaceCart (click)
 import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFacilities } from "./database.js"
+import { SpaceCart } from "./SpaceCart.js"
 
 const minerals = getMinerals()
 const facilityMinerals = getFacilityMinerals()
@@ -10,13 +11,13 @@ const facilityMinerals = getFacilityMinerals()
 // Create an filtered array of facilityMinerals of the selected facility
 
 export const filteredFacilityMinerals = (facility) => {
-    
+
     let facilityMineralArray = []
 
     for (const facilityMineral of facilityMinerals) {
         if (facilityMineral.facilityId === facility.id)
-        
-        facilityMineralArray.push(facilityMineral)
+
+            facilityMineralArray.push(facilityMineral)
     }
     return facilityMineralArray
 }
@@ -24,23 +25,23 @@ export const filteredFacilityMinerals = (facility) => {
 // Returns an HTML list String via string interpolation
 export const Minerals = (selectedFacility) => {
     let html = "<ul>"
-    
+
     const filteredMineralArray = filteredFacilityMinerals(selectedFacility)
-    
+
     filteredMineralArray.forEach((filteredMineral) => {
 
         for (const mineral of minerals) {
             if (filteredMineral.mineralId === mineral.id) {
-                html += 
-            `<li> 
+                html +=
+                    `<li> 
             <input type="radio" name="mineral" value="${mineral.id}" /> 
             ${filteredMineral.mineralAmount} tons of ${mineral.name}
             </li>`
-            }           
+            }
         }
     })
     html += "</ul>"
-return html
+    return html
 
 }
 
@@ -48,34 +49,18 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "mineral") {
-            
+
             const spaceCartContainer = document.querySelector(".spaceCartHTML")
-            
+
             setMineral(parseInt(event.target.value))
-            
+
             const mineralId = parseInt(event.target.value)
 
-            const facilities = getFacilities()
-            
-            const minerals = getMinerals()
-            
             const foundObject = findTransientState()
-            
-            const foundFacility = facilities.find((facility) => {
-                return facility.id === foundObject.selectedFacility
-            })
-            
-            let innerHTML = ""
-            // iterate through list of minerals
-            for (const mineral of minerals) {
-                // to find if the value of the change event target is equal to a mineralId
-                if (mineralId === mineral.id) {
-                    //    if equal, return html with mineral radio button inputs
-                    innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}`
-                    // return mineralContainer.innerHTML = mineralHTML
-                } 
-            }
-            spaceCartContainer.innerHTML = innerHTML
+
+            const spaceCartString = SpaceCart(foundObject, mineralId)
+
+            spaceCartContainer.innerHTML = spaceCartString
         }
     }
 )
