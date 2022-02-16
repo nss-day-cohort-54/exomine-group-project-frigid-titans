@@ -1,24 +1,47 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    
-    
+  display: flex;
+  flex-direction: column;
 }
 
 .purchaser__selection {
-    display: flex;
-    flex-direction: row;
-    flex: 3;
+  display: flex;
+  flex-direction: row;
+  flex: 3;
 }
 
 .provider__selection {
-    flex: 1;
+  flex: 1;
 }
 
 .mineral__selection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex: 3;
+  display: flex;
+  flex-direction: row;
+  flex: 3;
+  margin: 10px;
 }
 
+.spaceCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px dashed rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  width: 250px;
+  height: 200px;
+  margin-left: 5px;
+}
+
+.minerals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px dashed rgb(0, 0, 0);
+  border-radius: 0.5rem;
+  width: 500px;
+  height: 200px;
+}
+
+.colony {
+  display: flex;
+  flex
+}
