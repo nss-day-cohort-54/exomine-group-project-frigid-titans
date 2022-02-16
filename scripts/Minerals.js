@@ -43,11 +43,6 @@ export const Minerals = (selectedFacility) => {
 return html
 
 }
-// create a function that passes the selected mineral as an object
-// 
-const findFacility = (mineralObj) => {
-
-}
 
 document.addEventListener(
     "change",
@@ -61,16 +56,22 @@ document.addEventListener(
             const mineralId = parseInt(event.target.value)
 
             const facilities = getFacilities()
+            
             const minerals = getMinerals()
             
             const foundObject = findTransientState()
+            
+            const foundFacility = facilities.find((facility) => {
+                return facility.id === foundObject.selectedFacility
+            })
+            
             let innerHTML = ""
             // iterate through list of minerals
             for (const mineral of minerals) {
                 // to find if the value of the change event target is equal to a mineralId
                 if (mineralId === mineral.id) {
                     //    if equal, return html with mineral radio button inputs
-                    innerHTML += `1 ton of ${mineral.name} from `
+                    innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}`
                     // return mineralContainer.innerHTML = mineralHTML
                 } 
             }
