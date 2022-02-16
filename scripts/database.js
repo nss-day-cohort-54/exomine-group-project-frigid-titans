@@ -362,6 +362,19 @@ export const getColonyMinerals = () => {
     return database.colonyMinerals.map(colonyMineral => ({...colonyMineral}))
 }
 
+export const findTransientState = () => {
+    const foundSelection = {...database.transientState}
+    return foundSelection
+   
+}
+
+// const foundMineral = database.find(
+
+//     (t) => {
+//         return t.selectedMineral === mineralId
+//     }
+// )
+
 export const purchaseMineral = () => {
 
         // Broadcast custom event to entire document so that the
