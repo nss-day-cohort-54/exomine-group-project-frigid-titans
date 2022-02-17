@@ -1,6 +1,7 @@
 import { Governors } from "./Governors.js"
-import { MineralMath } from "./SpaceCart.js"
+
 import { Facilities } from "./Facilities.js"
+import { purchaseMineral } from "./database.js"
 // Define and export a function that contains the entire HTML
 
 export const Exomine = () => {
@@ -43,7 +44,9 @@ document.addEventListener(
         // if this thing happens
         if (buttonClicked.id === "purchase") {
             // then call this function
-            MineralMath()
+            // 
+            // purchase function
+            purchaseMineral()
         }
     }
 )

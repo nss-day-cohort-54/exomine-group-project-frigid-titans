@@ -368,8 +368,34 @@ export const findTransientState = () => {
    
 }
 
+export const decrementMineralFacility = () => {
+    const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
+        return database.transientState.selectedFacility === facilityMineral.facilityId &&
+            database.transientState.selectedMineral === facilityMineral.mineralId
+    })
+    foundFacilityMineral.mineralAmount --
+}  
+
+export const incrementColonyMineral = () => {
+    const foundGov = database.governors.find((gov) => {
+        return database.transientState.selectedGovernor === gov.id
+    })
+
+    const foundColonyMinerals = database.colonyMinerals.find((colonyMineral) => {
+        return database.transientState.selectedMineral === colonyMineral.mineralId &&
+            foundGov.colonyId === colonyMineral.colonyId 
+    })
+    foundColonyMinerals.mineralAmount ++
+
+}
+
 export const purchaseMineral = () => {
     
+    // increment and decrement
+
+    decrementMineralFacility()
+    incrementColonyMineral()
+
     database.transientState = {}
 
     document.dispatchEvent( new CustomEvent("stateChanged"))

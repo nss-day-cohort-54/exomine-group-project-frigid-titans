@@ -2,11 +2,13 @@ import { getColonies, getColonyMinerals, getFacilityMinerals, findTransientState
 import { Colonies } from "./Colonies.js";
 import { Minerals } from "./Minerals.js";
 
-export const SpaceCart = (foundObject, mineralId) => {
-
+export const SpaceCart = () => {
+    const foundObject = findTransientState()
+    
     const facilities = getFacilities()
 
     const minerals = getMinerals()
+    
     const foundFacility = facilities.find((facility) => {
         return facility.id === foundObject.selectedFacility
     })
@@ -15,7 +17,7 @@ export const SpaceCart = (foundObject, mineralId) => {
     // iterate through list of minerals
     for (const mineral of minerals) {
         // to find if the value of the change event target is equal to a mineralId
-        if (mineralId === mineral.id) {
+        if (foundObject.selectedMineral === mineral.id) {
             //    if equal, return html with mineral radio button inputs
             innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}`
             // return mineralContainer.innerHTML = mineralHTML
@@ -24,41 +26,41 @@ export const SpaceCart = (foundObject, mineralId) => {
     return innerHTML
 }
 
-export const MineralMath = () => {
+// export const MineralMath = () => {
     
-    const facilityMinerals = getFacilityMinerals()
+//     const facilityMinerals = getFacilityMinerals()
 
-    const governors = getGovernors()
+//     const governors = getGovernors()
 
-    const colonyMinerals = getColonyMinerals()
+//     const colonyMinerals = getColonyMinerals()
 
-    const foundObject = findTransientState()
+//     const foundObject = findTransientState()
 
-    facilityMinerals.find((facilityMineral) => {
-        if (foundObject.selectedFacility === facilityMineral.facilityId &&
-            foundObject.selectedMineral === facilityMineral.mineralId) {
-                return facilityMineral.mineralAmount--
-            }
-    })
+//     facilityMinerals.find((facilityMineral) => {
+//         if (foundObject.selectedFacility === facilityMineral.facilityId &&
+//             foundObject.selectedMineral === facilityMineral.mineralId) {
+//                 return facilityMineral.mineralAmount--
+//             }
+//     })
 
-    const foundGov = governors.find((gov) => {
-        return foundObject.selectedGovernor === gov.id
-    })
+//     const foundGov = governors.find((gov) => {
+//         return foundObject.selectedGovernor === gov.id
+//     })
 
-    colonyMinerals.find((colonyMineral) => {
-        if (foundObject.selectedMineral === colonyMineral.mineralId &&
-            foundGov.colonyId === colonyMineral.colonyId) {
-                return colonyMineral.mineralAmount++
-            }
-    })
-    
+//     const foundMinerals= colonyMinerals.find((colonyMineral) => {
+//         return foundObject.selectedMineral === colonyMineral.mineralId &&
+//             foundGov.colonyId === colonyMineral.colonyId 
+//     })
+    // colonyMinerals.
+
+
     // const colonyContainer = document.querySelector(".colony")
     //         colonyContainer.innerHTML = Colonies(foundGov)
 
     // purchaseMineral()
 
 
-}
+
 
 // DEfine and Export a function
 

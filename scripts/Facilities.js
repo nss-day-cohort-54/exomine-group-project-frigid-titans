@@ -41,7 +41,7 @@ document.addEventListener(
                 if (parseInt(event.target.value) === facility.id) {
                 //    if equal, return html with mineral radio button inputs
                     innerHTML += `<h2>Facility Minerals of ${facility.name}</h2><br>
-                                ${Minerals(facility)}`
+                                ${Minerals()}`
                     // return mineralContainer.innerHTML = mineralHTML
                     
                 } 

@@ -23,10 +23,18 @@ export const filteredFacilityMinerals = (facility) => {
 }
 
 // Returns an HTML list String via string interpolation
-export const Minerals = (selectedFacility) => {
+export const Minerals = () => {
+    const foundObject = findTransientState()
+
+    const facilities = getFacilities()
+
+    const foundFacility = facilities.find((facility) => {
+        return facility.id === foundObject.selectedFacility
+    })
+
     let html = "<ul>"
 
-    const filteredMineralArray = filteredFacilityMinerals(selectedFacility)
+    const filteredMineralArray = filteredFacilityMinerals(foundFacility)
 
     filteredMineralArray.forEach((filteredMineral) => {
 
@@ -54,13 +62,7 @@ document.addEventListener(
 
             setMineral(parseInt(event.target.value))
 
-            const mineralId = parseInt(event.target.value)
-
-            const foundObject = findTransientState()
-
-            const spaceCartString = SpaceCart(foundObject, mineralId)
-
-            spaceCartContainer.innerHTML = spaceCartString
+            spaceCartContainer.innerHTML = `${SpaceCart()}`
         }
     }
 )
