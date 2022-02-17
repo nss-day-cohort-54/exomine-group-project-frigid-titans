@@ -4,6 +4,8 @@ import { Minerals } from "./Minerals.js";
 
 export const SpaceCart = () => {
     const spaceCartContainer = document.querySelector(".spaceCartHTML")
+    
+    // change to reflect multiple facility mineral selections
     const foundObject = findTransientState()
     
     const facilities = getFacilities()
@@ -11,10 +13,12 @@ export const SpaceCart = () => {
     const minerals = getMinerals()
     
     const foundFacility = facilities.find((facility) => {
+                                // change to reflect found facility
         return facility.id === foundObject.selectedFacility
     })
 
     let innerHTML = ""
+    // iterate through cart objects
     // iterate through list of minerals
     for (const mineral of minerals) {
         // to find if the value of the change event target is equal to a mineralId
@@ -27,56 +31,7 @@ export const SpaceCart = () => {
         }
         
     } 
+
     spaceCartContainer.innerHTML = innerHTML
 }
-
-// export const MineralMath = () => {
-    
-//     const facilityMinerals = getFacilityMinerals()
-
-//     const governors = getGovernors()
-
-//     const colonyMinerals = getColonyMinerals()
-
-//     const foundObject = findTransientState()
-
-//     facilityMinerals.find((facilityMineral) => {
-//         if (foundObject.selectedFacility === facilityMineral.facilityId &&
-//             foundObject.selectedMineral === facilityMineral.mineralId) {
-//                 return facilityMineral.mineralAmount--
-//             }
-//     })
-
-//     const foundGov = governors.find((gov) => {
-//         return foundObject.selectedGovernor === gov.id
-//     })
-
-//     const foundMinerals= colonyMinerals.find((colonyMineral) => {
-//         return foundObject.selectedMineral === colonyMineral.mineralId &&
-//             foundGov.colonyId === colonyMineral.colonyId 
-//     })
-    // colonyMinerals.
-
-
-    // const colonyContainer = document.querySelector(".colony")
-    //         colonyContainer.innerHTML = Colonies(foundGov)
-
-    // purchaseMineral()
-
-
-
-
-// DEfine and Export a function
-
-// that displays the minerals selected HTML
-
-
-// Define function that adds minerals to colonies and subtracts from facilities
-// mineralMath()
-// return facilityMineral.amount and colonyMineral.amount
-
-// 
-
-// event listener for submit order button
-    // calls mineralMath(function)
 

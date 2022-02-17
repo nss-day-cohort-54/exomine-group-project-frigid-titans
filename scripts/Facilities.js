@@ -30,6 +30,7 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.id === "facilities") {
+            // Set multiple facilities
             setFacility(parseInt(event.target.value))
             Minerals()
             

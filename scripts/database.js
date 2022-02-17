@@ -329,7 +329,12 @@ const database = {
             mineralAmount: 0
         },
     ],
-    transientState: {}
+    transientState: {
+        selectedGovernor: 2,
+        selectedFacility: 3,
+        selectedFacilityMinerals: [2, 4, 3]
+
+    }
 }
 
 export const setFacility = (facilityId) => {
@@ -340,8 +345,10 @@ export const setGovernor = (governorId) => {
     database.transientState.selectedGovernor = governorId
      
 }
-export const setMineral = (mineralId) => {
-    database.transientState.selectedMineral = mineralId
+// selected facilityMineral
+// export selectedFAcilityMineral
+export const setMineral = (facilityMineralId) => {
+    database.transientState.selectedFacilityMinerals.push(facilityMineralId)
     
 }
 
@@ -370,6 +377,13 @@ export const findTransientState = () => {
    
 }
 
+export const findTransientFacilityMinerals = () => {
+    const foundFacilityMineralsArray = {...database.transientState.selectedFacilityMinerals}
+    return foundFacilityMineralsArray
+}
+
+const foundFacilityMineralsArray = findTransientFacilityMinerals()
+
 export const decrementMineralFacility = () => {
     const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
         return database.transientState.selectedFacility === facilityMineral.facilityId &&
@@ -390,6 +404,18 @@ export const incrementColonyMineral = () => {
     foundColonyMinerals.mineralAmount ++
 
 }
+// create a function that stores each selected facility mineral in an array
+// 
+export const selectedMineral = () => {
+    
+    const foundObject = findTransientState()
+    
+    let selectedMineralsArray = []
+
+    selectedMineralsArray.push(foundObject)
+
+    database.transientState = {}
+}
 
 export const purchaseMineral = () => {
     
@@ -398,7 +424,7 @@ export const purchaseMineral = () => {
     decrementMineralFacility()
     incrementColonyMineral()
 
-    database.transientState.selectedMineral = {}
+    database.transientState.selectedFacilityMineral = []
 
     document.dispatchEvent( new CustomEvent("stateChanged"))
     

@@ -24,6 +24,7 @@ export const filteredFacilityMinerals = (facility) => {
 // Returns an HTML list String via string interpolation
 export const Minerals = () => {
     const minerals = getMinerals()
+    // might have to cange to reflect mutiple facility selection
     const foundObject = findTransientState()
 
     const facilities = getFacilities()
@@ -31,6 +32,7 @@ export const Minerals = () => {
     const mineralContainer = document.querySelector(".minerals")
 
     const foundFacility = facilities.find((facility) => {
+                                // change with regard to multiple facility selection
         return facility.id === foundObject.selectedFacility
     })
     if (foundObject.selectedFacility === foundFacility?.id) {
@@ -66,9 +68,7 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "mineral") {
-
-
-
+            // set multiple mineral IDs to stransient state
             setMineral(parseInt(event.target.value))
 
             SpaceCart()
@@ -76,22 +76,3 @@ document.addEventListener(
     }
 )
 
-//         ${
-//             // iterates(?) through Mineral array
-//             filteredMinerals.map(
-//                 if (filteredMinerals.id === mineral.id) {
-//                 // for each vegetable object, return's a list item string
-//                 // setting the value attribute equal to the id property of each mineral object
-//                 // and the visible HTML(?) equal to the type property of that object
-//                 (mineral) => {
-//                     return `<li>
-//                                 <input type="radio" name="mineral" value="${mineral.id}" /> ${mineral.type}
-//                             </li>`
-//                 }
-//             //the join property is then invoked to join each list item into one string 
-//                 }
-//             ).join("")
-//         }
-//     </ul>
-//     `    
-// }
