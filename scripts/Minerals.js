@@ -6,12 +6,12 @@ import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFa
 import { SpaceCart } from "./SpaceCart.js"
 
 const minerals = getMinerals()
-const facilityMinerals = getFacilityMinerals()
+
 
 // Create an filtered array of facilityMinerals of the selected facility
 
 export const filteredFacilityMinerals = (facility) => {
-
+    const facilityMinerals = getFacilityMinerals()
     let facilityMineralArray = []
 
     for (const facilityMineral of facilityMinerals) {
@@ -23,10 +23,20 @@ export const filteredFacilityMinerals = (facility) => {
 }
 
 // Returns an HTML list String via string interpolation
-export const Minerals = (selectedFacility) => {
+export const Minerals = () => {
+    const foundObject = findTransientState()
+
+    const facilities = getFacilities()
+
+    const mineralContainer = document.querySelector(".minerals")
+
+    const foundFacility = facilities.find((facility) => {
+        return facility.id === foundObject.selectedFacility
+    })
+
     let html = "<ul>"
 
-    const filteredMineralArray = filteredFacilityMinerals(selectedFacility)
+    const filteredMineralArray = filteredFacilityMinerals(foundFacility)
 
     filteredMineralArray.forEach((filteredMineral) => {
 
@@ -41,7 +51,7 @@ export const Minerals = (selectedFacility) => {
         }
     })
     html += "</ul>"
-    return html
+    mineralContainer.innerHTML = html
 
 }
 
@@ -54,13 +64,7 @@ document.addEventListener(
 
             setMineral(parseInt(event.target.value))
 
-            const mineralId = parseInt(event.target.value)
-
-            const foundObject = findTransientState()
-
-            const spaceCartString = SpaceCart(foundObject, mineralId)
-
-            spaceCartContainer.innerHTML = spaceCartString
+            spaceCartContainer.innerHTML = `${SpaceCart()}`
         }
     }
 )
