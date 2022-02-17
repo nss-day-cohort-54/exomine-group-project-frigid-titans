@@ -1,13 +1,15 @@
 // import get Colonies
-import { getColonies, getColonyMinerals, getGovernors } from "./database.js"
+import { getColonies, getColonyMinerals, getGovernors, findTransientState } from "./database.js"
 
 const colonies = getColonies();
 const governors = getGovernors();
 const minerals = getColonyMinerals();
 
 // Html string that displays the amount of colony resources
-export const Colonies = (governorId) => {
-    let governor = governors.find(gov => gov.id === parseInt(governorId))
+export const Colonies = () => {
+    const transientState = findTransientState();
+
+    let governor = governors.find(gov => gov.id === parseInt(transientState.selectedGovernor))
     for (const colony of colonies) {
         if (governor?.colonyId === colony.id) {
             let html = `<h2> ${colony.name} Minerals </h2>`
