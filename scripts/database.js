@@ -188,7 +188,7 @@ const database = {
             id: 1,
             colonyId: 1,
             mineralId: 1,
-            mineralAmount: 0
+            mineralAmount: 100
         },
         {
             id: 2,
