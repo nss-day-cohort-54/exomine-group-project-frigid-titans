@@ -6,8 +6,8 @@
 .purchaser__selection {
   display: flex;
   flex-direction: row;
-  flex: 3;
   align-items: baseline;
+  
 }
 
 .provider__selection {
@@ -43,7 +43,9 @@
 }
 
 .colony {
-  display: flex;
-  margin: 100px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 100px;
+  }
 
