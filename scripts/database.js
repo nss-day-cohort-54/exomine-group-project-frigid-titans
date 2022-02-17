@@ -398,6 +398,7 @@ export const purchaseMineral = () => {
     decrementMineralFacility()
     incrementColonyMineral()
 
+    database.transientState.selectedMineral = {}
 
     document.dispatchEvent( new CustomEvent("stateChanged"))
     
