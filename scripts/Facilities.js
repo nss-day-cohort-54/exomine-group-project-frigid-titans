@@ -30,7 +30,7 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.id === "facilities") {
-            const mineralContainer = document.querySelector(".minerals")
+            const mineralContainer = document.querySelector(".mineral_header")
             setFacility(parseInt(event.target.value))
             
             const facilities = getFacilities()
@@ -40,13 +40,12 @@ document.addEventListener(
                 // to find if the value of the change event target is equal to a facility Id
                 if (parseInt(event.target.value) === facility.id) {
                 //    if equal, return html with mineral radio button inputs
-                    innerHTML += `<h2>Facility Minerals of ${facility.name}</h2><br>
-                                ${Minerals()}`
+                    innerHTML += `<h2>Facility Minerals of ${facility.name}</h2><br>`
+                    mineralContainer.innerHTML = innerHTML
                     // return mineralContainer.innerHTML = mineralHTML
-                    
                 } 
+                Minerals()
             }
-            mineralContainer.innerHTML = innerHTML
         }
     }
 )

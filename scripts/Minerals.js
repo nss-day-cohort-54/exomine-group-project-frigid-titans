@@ -6,12 +6,12 @@ import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFa
 import { SpaceCart } from "./SpaceCart.js"
 
 const minerals = getMinerals()
-const facilityMinerals = getFacilityMinerals()
+
 
 // Create an filtered array of facilityMinerals of the selected facility
 
 export const filteredFacilityMinerals = (facility) => {
-
+    const facilityMinerals = getFacilityMinerals()
     let facilityMineralArray = []
 
     for (const facilityMineral of facilityMinerals) {
@@ -27,6 +27,8 @@ export const Minerals = () => {
     const foundObject = findTransientState()
 
     const facilities = getFacilities()
+
+    const mineralContainer = document.querySelector(".minerals")
 
     const foundFacility = facilities.find((facility) => {
         return facility.id === foundObject.selectedFacility
@@ -49,7 +51,7 @@ export const Minerals = () => {
         }
     })
     html += "</ul>"
-    return html
+    mineralContainer.innerHTML = html
 
 }
 

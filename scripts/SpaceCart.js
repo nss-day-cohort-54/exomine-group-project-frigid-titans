@@ -21,7 +21,10 @@ export const SpaceCart = () => {
             //    if equal, return html with mineral radio button inputs
             innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}`
             // return mineralContainer.innerHTML = mineralHTML
+        } else if (foundObject.selectedMineral === undefined) {
+            innerHTML += ""
         }
+        
     } 
     return innerHTML
 }

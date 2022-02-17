@@ -1,3 +1,5 @@
+
+
 const database = {
     governors: [
         {
@@ -332,15 +334,15 @@ const database = {
 
 export const setFacility = (facilityId) => {
     database.transientState.selectedFacility = facilityId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+    
 }
 export const setGovernor = (governorId) => {
     database.transientState.selectedGovernor = governorId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+     
 }
 export const setMineral = (mineralId) => {
     database.transientState.selectedMineral = mineralId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+    
 }
 
 export const getFacilities = () => {
@@ -396,7 +398,6 @@ export const purchaseMineral = () => {
     decrementMineralFacility()
     incrementColonyMineral()
 
-    database.transientState = {}
 
     document.dispatchEvent( new CustomEvent("stateChanged"))
     
