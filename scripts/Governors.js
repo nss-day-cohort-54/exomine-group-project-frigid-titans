@@ -34,9 +34,7 @@ document.addEventListener(
         // // if governor.colonyId === colony ID, display
         if (event.target.id === "governors") {
             setGovernor(parseInt(event.target.value))
-            const colonyContainer = document.querySelector(".colony")
-            colonyContainer.innerHTML = Colonies()
-            
+            Colonies()
         }
     }
 )
