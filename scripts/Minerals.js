@@ -60,11 +60,11 @@ document.addEventListener(
     (event) => {
         if (event.target.name === "mineral") {
 
-            const spaceCartContainer = document.querySelector(".spaceCartHTML")
+            
 
             setMineral(parseInt(event.target.value))
 
-            spaceCartContainer.innerHTML = `${SpaceCart()}`
+            SpaceCart()
         }
     }
 )

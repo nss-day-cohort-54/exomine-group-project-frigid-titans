@@ -3,6 +3,7 @@ import { Colonies } from "./Colonies.js";
 import { Minerals } from "./Minerals.js";
 
 export const SpaceCart = () => {
+    const spaceCartContainer = document.querySelector(".spaceCartHTML")
     const foundObject = findTransientState()
     
     const facilities = getFacilities()
@@ -26,7 +27,7 @@ export const SpaceCart = () => {
         }
         
     } 
-    return innerHTML
+    spaceCartContainer.innerHTML = innerHTML
 }
 
 // export const MineralMath = () => {
