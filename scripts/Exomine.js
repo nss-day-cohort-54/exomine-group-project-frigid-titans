@@ -1,6 +1,10 @@
 import { Governors } from "./Governors.js"
-import { MineralMath } from "./SpaceCart.js"
+
 import { Facilities } from "./Facilities.js"
+import { purchaseMineral } from "./database.js"
+import { Colonies } from "./Colonies.js"
+import { Minerals } from "./Minerals.js"
+import { SpaceCart } from "./SpaceCart.js"
 // Define and export a function that contains the entire HTML
 
 export const Exomine = () => {
@@ -22,8 +26,9 @@ export const Exomine = () => {
         </section>
     </article>
     <article class="mineral__selection">
-        <section class="minerals">
-            <h2>Facility Minerals</h2>
+        <section class="minerals_container">
+            <div class="mineral_header"><h2>Facility Minerals</h2></div>
+            <div class="minerals"></div>
         </section>
         <section class="spaceCart">
         <h3>Space Cart</h3>
@@ -43,7 +48,12 @@ document.addEventListener(
         // if this thing happens
         if (buttonClicked.id === "purchase") {
             // then call this function
-            MineralMath()
+            // 
+            // purchase function
+            purchaseMineral()
+            Colonies()
+            Minerals()
+            SpaceCart()
         }
     }
 )

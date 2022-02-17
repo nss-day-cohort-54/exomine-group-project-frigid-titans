@@ -1,3 +1,5 @@
+
+
 const database = {
     governors: [
         {
@@ -332,15 +334,15 @@ const database = {
 
 export const setFacility = (facilityId) => {
     database.transientState.selectedFacility = facilityId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+    
 }
 export const setGovernor = (governorId) => {
     database.transientState.selectedGovernor = governorId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+     
 }
 export const setMineral = (mineralId) => {
     database.transientState.selectedMineral = mineralId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+    
 }
 
 export const getFacilities = () => {
@@ -368,9 +370,34 @@ export const findTransientState = () => {
    
 }
 
+export const decrementMineralFacility = () => {
+    const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
+        return database.transientState.selectedFacility === facilityMineral.facilityId &&
+            database.transientState.selectedMineral === facilityMineral.mineralId
+    })
+    foundFacilityMineral.mineralAmount --
+}  
+
+export const incrementColonyMineral = () => {
+    const foundGov = database.governors.find((gov) => {
+        return database.transientState.selectedGovernor === gov.id
+    })
+
+    const foundColonyMinerals = database.colonyMinerals.find((colonyMineral) => {
+        return database.transientState.selectedMineral === colonyMineral.mineralId &&
+            foundGov.colonyId === colonyMineral.colonyId 
+    })
+    foundColonyMinerals.mineralAmount ++
+
+}
+
 export const purchaseMineral = () => {
     
-    database.transientState = {}
+    // increment and decrement
+
+    decrementMineralFacility()
+    incrementColonyMineral()
+
 
     document.dispatchEvent( new CustomEvent("stateChanged"))
     
