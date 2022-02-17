@@ -5,7 +5,6 @@
 import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFacilities } from "./database.js"
 import { SpaceCart } from "./SpaceCart.js"
 
-const minerals = getMinerals()
 
 
 // Create an filtered array of facilityMinerals of the selected facility
@@ -13,17 +12,18 @@ const minerals = getMinerals()
 export const filteredFacilityMinerals = (facility) => {
     const facilityMinerals = getFacilityMinerals()
     let facilityMineralArray = []
-
+    
     for (const facilityMineral of facilityMinerals) {
         if (facilityMineral.facilityId === facility.id)
-
-            facilityMineralArray.push(facilityMineral)
+        
+        facilityMineralArray.push(facilityMineral)
     }
     return facilityMineralArray
 }
 
 // Returns an HTML list String via string interpolation
 export const Minerals = () => {
+    const minerals = getMinerals()
     const foundObject = findTransientState()
 
     const facilities = getFacilities()
@@ -33,34 +33,41 @@ export const Minerals = () => {
     const foundFacility = facilities.find((facility) => {
         return facility.id === foundObject.selectedFacility
     })
+    if (foundObject.selectedFacility === foundFacility?.id) {
+        let html = `<h2>Facility Minerals of ${foundFacility.name}</h2><br>`
+        html += "<ul>"
 
-    let html = "<ul>"
+        const filteredMineralArray = filteredFacilityMinerals(foundFacility)
 
-    const filteredMineralArray = filteredFacilityMinerals(foundFacility)
+        filteredMineralArray.forEach((filteredMineral) => {
 
-    filteredMineralArray.forEach((filteredMineral) => {
-
-        for (const mineral of minerals) {
-            if (filteredMineral.mineralId === mineral.id) {
-                html +=
-                    `<li> 
+            for (const mineral of minerals) {
+                if (filteredMineral.mineralId === mineral.id) {
+                    html +=
+                        `<li> 
             <input type="radio" name="mineral" value="${mineral.id}" /> 
             ${filteredMineral.mineralAmount} tons of ${mineral.name}
             </li>`
+                }
             }
-        }
-    })
-    html += "</ul>"
-    mineralContainer.innerHTML = html
+        })
+        html += "</ul>"
+        mineralContainer.innerHTML = html
+    } else if (foundFacility === undefined) {
+        mineralContainer.innerHTML = `<h2>Facility Minerals</h2>`
+    }
 
 }
+
+
+
 
 document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "mineral") {
 
-            
+
 
             setMineral(parseInt(event.target.value))
 
