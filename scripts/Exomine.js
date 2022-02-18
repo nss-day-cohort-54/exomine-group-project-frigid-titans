@@ -60,8 +60,3 @@ document.addEventListener(
 
 
 
-// for the body of the website
-    //contains the component functions for
-        //Governor drop down selection (Governors())
-        // drop down for facilities selection (Facilities())
-        // Mineral purchase Function and button (Orders())

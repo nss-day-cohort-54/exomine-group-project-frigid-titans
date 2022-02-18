@@ -379,6 +379,13 @@ export const findTransientState = () => {
 }
 
 //decrement all minerals in the array
+export const findTransientFacilityMinerals = () => {
+    const foundFacilityMineralsArray = {...database.transientState.selectedFacilityMinerals}
+    return foundFacilityMineralsArray
+}
+
+const foundFacilityMineralsArray = findTransientFacilityMinerals()
+
 export const decrementMineralFacility = () => {
     database.transientState.selectedFacilityMinerals.forEach(selectedFacilityMineral => {
         const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
@@ -418,6 +425,18 @@ export const incrementColonyMineral = () => {
 //map array in transient state
 export const findTFM = () => {
     return database.transientState.selectedFacilityMinerals.map(selectedFacilityMineral => ({...selectedFacilityMineral}))
+}
+// create a function that stores each selected facility mineral in an array
+// 
+export const selectedMineral = () => {
+    
+    const foundObject = findTransientState()
+    
+    let selectedMineralsArray = []
+
+    selectedMineralsArray.push(foundObject)
+
+    database.transientState = {}
 }
 
 export const purchaseMineral = () => {

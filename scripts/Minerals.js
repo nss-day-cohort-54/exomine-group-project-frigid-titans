@@ -24,6 +24,7 @@ export const filteredFacilityMinerals = (facility) => {
 // Returns an HTML list String via string interpolation
 export const Minerals = () => {
     const minerals = getMinerals()
+    // might have to cange to reflect mutiple facility selection
     const foundObject = findTransientState()
 
     const facilities = getFacilities()
@@ -31,6 +32,7 @@ export const Minerals = () => {
     const mineralContainer = document.querySelector(".minerals")
 
     const foundFacility = facilities.find((facility) => {
+                                // change with regard to multiple facility selection
         return facility.id === foundObject.selectedFacility
     })
     if (foundObject.selectedFacility === foundFacility?.id) {
