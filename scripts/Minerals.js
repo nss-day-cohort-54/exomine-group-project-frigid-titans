@@ -2,7 +2,7 @@
 // HTML string to display available minerals in a facility as radio buttons
 // event listener change or click for radio button selection
 // once selected, the selected would be displayed in SpaceCart (click)
-import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFacilities } from "./database.js"
+import { getMinerals, setMineral, getFacilityMinerals, findTransientState, getFacilities, setFacilityMinerals } from "./database.js"
 import { SpaceCart } from "./SpaceCart.js"
 
 
@@ -12,11 +12,11 @@ import { SpaceCart } from "./SpaceCart.js"
 export const filteredFacilityMinerals = (facility) => {
     const facilityMinerals = getFacilityMinerals()
     let facilityMineralArray = []
-    
+
     for (const facilityMineral of facilityMinerals) {
         if (facilityMineral.facilityId === facility.id)
-        
-        facilityMineralArray.push(facilityMineral)
+
+            facilityMineralArray.push(facilityMineral)
     }
     return facilityMineralArray
 }
@@ -45,7 +45,7 @@ export const Minerals = () => {
                 if (filteredMineral.mineralId === mineral.id) {
                     html +=
                         `<li> 
-            <input type="radio" name="mineral" value="${mineral.id}" /> 
+            <input type="radio" name="mineral" value="${filteredMineral.id}" /> 
             ${filteredMineral.mineralAmount} tons of ${mineral.name}
             </li>`
                 }
@@ -67,11 +67,16 @@ document.addEventListener(
     (event) => {
         if (event.target.name === "mineral") {
 
-
-
-            setMineral(parseInt(event.target.value))
-
-            SpaceCart()
+            const selectedFacilityMineral = parseInt(event.target.value)
+            const facilityMinerals = getFacilityMinerals()
+            const foundFacilityMineral = facilityMinerals.find((facilityMineral) => {
+             return selectedFacilityMineral === facilityMineral.id
+            })
+            // set multiple mineral IDs to stransient state
+            setFacilityMinerals(foundFacilityMineral)
+            let currentFacilityMineral= foundFacilityMineral
+            SpaceCart(currentFacilityMineral)
+          
         }
     }
 )

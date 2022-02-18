@@ -32,6 +32,8 @@ document.addEventListener(
         if (event.target.id === "facilities") {
             setFacility(parseInt(event.target.value))
             Minerals()
+
+            //based upon facility mineral id increment mineral amount in transient state
             
         }
     }
