@@ -42,9 +42,9 @@ export const SpaceCart = (facilityMineralObj) => {
     // const facilityMinerals = getFacilityMinerals()
     // const filiteredArray = filteredFacilityMineralArray(transientFacilityMineralArray,facilityMinerals)
     if (!facilityMineralObj) {
-        return ""
-    }
-    let innerHTML = "<ul>"
+        spaceCartContainer.innerHTML = ""
+    } else {
+    let innerHTML = ""
     // iterate through cart objects
     // iterate through list of minerals
             const foundFacility = facilities.find((facility) => {
@@ -55,14 +55,15 @@ export const SpaceCart = (facilityMineralObj) => {
                 // to find if the value of the change event target is equal to a mineralId
                 if (facilityMineralObj.mineralId === mineral.id) {
                     //    if equal, return html with mineral radio button inputs
-                    innerHTML += `<li>1 ton of ${mineral.name} from ${foundFacility.name}</li>`
+                    innerHTML += `1 ton of ${mineral.name} from ${foundFacility.name}<br>`
                     // return mineralContainer.innerHTML = mineralHTML
                 } else if (facilityMineralObj.mineralId === undefined) {
                     innerHTML += ""
                 }
             }
-            innerHTML += `</ul>`
+            //innerHTML += ``
             spaceCartContainer.innerHTML += innerHTML
+        }
         }
 
 

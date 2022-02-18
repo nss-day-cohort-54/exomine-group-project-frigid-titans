@@ -100,3 +100,6 @@ document.addEventListener(
 //     </ul>
 //     `    
 // }
+
+
+//function that takes all matching facilityMineral ids and combines them
