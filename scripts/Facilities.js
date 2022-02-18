@@ -33,6 +33,8 @@ document.addEventListener(
             // Set multiple facilities
             setFacility(parseInt(event.target.value))
             Minerals()
+
+            //based upon facility mineral id increment mineral amount in transient state
             
         }
     }

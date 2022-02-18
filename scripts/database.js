@@ -329,11 +329,9 @@ const database = {
             mineralAmount: 0
         },
     ],
+    //needs to be adapted to accept multiple minerals
     transientState: {
-        selectedGovernor: 2,
-        selectedFacility: 3,
-        selectedFacilityMinerals: [2, 4, 3]
-
+        selectedFacilityMinerals: []
     }
 }
 
@@ -345,10 +343,13 @@ export const setGovernor = (governorId) => {
     database.transientState.selectedGovernor = governorId
      
 }
-// selected facilityMineral
-// export selectedFAcilityMineral
-export const setMineral = (facilityMineralId) => {
-    database.transientState.selectedFacilityMinerals.push(facilityMineralId)
+//set facility minerals
+export const setFacilityMinerals = (facilityMineralObj) => {
+    return database.transientState.selectedFacilityMinerals.push(facilityMineralObj)
+}
+
+export const setMineral = (mineralId) => {
+    database.transientState.selectedMineral = mineralId
     
 }
 
@@ -377,6 +378,7 @@ export const findTransientState = () => {
    
 }
 
+//decrement all minerals in the array
 export const findTransientFacilityMinerals = () => {
     const foundFacilityMineralsArray = {...database.transientState.selectedFacilityMinerals}
     return foundFacilityMineralsArray
@@ -385,24 +387,44 @@ export const findTransientFacilityMinerals = () => {
 const foundFacilityMineralsArray = findTransientFacilityMinerals()
 
 export const decrementMineralFacility = () => {
-    const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
-        return database.transientState.selectedFacility === facilityMineral.facilityId &&
-            database.transientState.selectedMineral === facilityMineral.mineralId
+    database.transientState.selectedFacilityMinerals.forEach(selectedFacilityMineral => {
+        const foundFacilityMineral = database.facilityMinerals.find((facilityMineral) => {
+        return selectedFacilityMineral.id === facilityMineral.id
     })
-    foundFacilityMineral.mineralAmount --
-}  
+    foundFacilityMineral.mineralAmount--
+})
+}
 
+
+//increment all minerals in the array
 export const incrementColonyMineral = () => {
     const foundGov = database.governors.find((gov) => {
         return database.transientState.selectedGovernor === gov.id
     })
-
-    const foundColonyMinerals = database.colonyMinerals.find((colonyMineral) => {
-        return database.transientState.selectedMineral === colonyMineral.mineralId &&
-            foundGov.colonyId === colonyMineral.colonyId 
+    database.transientState.selectedFacilityMinerals.forEach((selectedFacilityMineral) => {
+        const foundColonyMinerals = database.colonyMinerals.find((colonyMineral) => {
+        return selectedFacilityMineral.mineralId=== colonyMineral.mineralId &&
+            foundGov.colonyId === colonyMineral.colonyId
     })
-    foundColonyMinerals.mineralAmount ++
+    foundColonyMinerals.mineralAmount++
+})
+}
+// export const incrementColonyMineral = () => {
+//     const foundGov = database.governors.find((gov) => {
+//         return database.transientState.selectedGovernor === gov.id
+//     })
 
+//     const foundColonyMinerals = database.colonyMinerals.find((colonyMineral) => {
+//         return database.transientState.selectedMineral === colonyMineral.mineralId &&
+//             foundGov.colonyId === colonyMineral.colonyId 
+//     })
+//     foundColonyMinerals.mineralAmount ++
+
+// }
+
+//map array in transient state
+export const findTFM = () => {
+    return database.transientState.selectedFacilityMinerals.map(selectedFacilityMineral => ({...selectedFacilityMineral}))
 }
 // create a function that stores each selected facility mineral in an array
 // 
@@ -424,7 +446,9 @@ export const purchaseMineral = () => {
     decrementMineralFacility()
     incrementColonyMineral()
 
-    database.transientState.selectedFacilityMineral = []
+    //reset it how it is at page load
+    database.transientState.selectedFacilityMinerals = []
+    
 
     document.dispatchEvent( new CustomEvent("stateChanged"))
     
